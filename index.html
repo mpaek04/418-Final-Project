@@ -37,10 +37,19 @@
       color: #4b3621; /* cocoa brown */
       margin-top: 30px;
     }
-    p {
+    h3 {
+      font-size: 16px;
+      color: #4b3621;
+      margin-top: 20px;
+    }
+    p, li {
       font-size: 15px;
       line-height: 1.7;
       color: #3b2f2f;
+    }
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
     }
     a {
       color: #4b3621;
@@ -49,6 +58,9 @@
     }
     a:hover {
       text-decoration: underline;
+    }
+    .schedule-section {
+      margin-top: 40px;
     }
   </style>
 </head>
@@ -69,6 +81,51 @@
         Detailed Proposal
       </a>
     </p>
+
+    <div class="schedule-section">
+      <h2>Project Schedule</h2>
+
+      <h3>Week 1 (Mar 25–31)</h3>
+      <p>Finalize project plan, set up GitHub, start sequential Thomas implementation</p>
+
+      <h3>Week 2 (Apr 1–7)</h3>
+      <p>Finish and test sequential solver; start Paramveer MPI implementation</p>
+
+      <h3>Week 3 (Apr 8–14)</h3>
+      <p>Complete MPI implementation; begin differential equation implementation; benchmark against sequential</p>
+
+      <h3>Week 4 (Apr 15–21)</h3>
+      <p><strong>Apr 15–18:</strong></p>
+      <ul>
+        <li>Discretize a sample differential equation using finite difference method (Assigned to: Tanisha)</li>
+        <li>Define appropriate boundary and initial conditions (Assigned to: Tanisha)</li>
+        <li>Generate the corresponding tridiagonal system and confirm correct form (Assigned to: May)</li>
+        <li>Run and verify numerical output on known PDE solutions (Assigned to: May)</li>
+      </ul>
+      <p><strong>Apr 19–21:</strong></p>
+      <ul>
+        <li>Implement PTA forward substitution CUDA kernel (Assigned to: May and Tanisha)</li>
+        <li>Implement PTA backward substitution CUDA kernel (Assigned to: May and Tanisha)</li>
+        <li>Optimize both kernels for coalesced memory access and shared memory usage (Assigned to: Tanisha)</li>
+        <li>Benchmark kernel on increasing matrix sizes; verify correctness vs sequential (Assigned to: May)</li>
+      </ul>
+
+      <h3>Week 5 (Apr 22–28)</h3>
+      <p><strong>Apr 22–24:</strong></p>
+      <ul>
+        <li>Implement Cyclic Reduction (CR) forward reduction step as CUDA kernel (Assigned to: May and Tanisha)</li>
+        <li>Implement back-substitution step for CR (Assigned to: May and Tanisha)</li>
+        <li>Implement Parallel Cyclic Reduction (PCR) version with fully parallel reduction (Assigned to: May and Tanisha)</li>
+        <li>Test correctness and performance of CR and PCR on power-of-2 and non-power-of-2 sized matrices (Assigned to: May and Tanisha)</li>
+      </ul>
+      <p><strong>Apr 25–28:</strong></p>
+      <ul>
+        <li>Collect final benchmark results across sequential, MPI, PTA, CR, and PCR (Assigned to: May and Tanisha)</li>
+        <li>Generate all visualizations: timing plots, speedup graphs, memory usage comparisons (Assigned to: Tanisha)</li>
+        <li>Finalize technical report, poster content, and README for GitHub (Assigned to: May)</li>
+        <li>Submit final paper and upload all materials (Assigned to: May and Tanisha)</li>
+      </ul>
+    </div>
   </div>
 </body>
 </html>
