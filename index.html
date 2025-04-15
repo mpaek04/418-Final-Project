@@ -80,7 +80,8 @@
     <h1>Comparative Analysis and Implementation of Parallel Tridiagonal Solvers</h1>
     <p class="team"><strong>Team Members:</strong> Tanisha Mehta, May Paek</p>
 
-    <h2>Summary</h2>
+    <!-- Project Overview Summary -->
+    <h2>Project Overview</h2>
     <p>
       We are implementing and benchmarking multiple parallel algorithms for solving tridiagonal systems of equations across diverse computing architectures: multi-core CPUs (MPI), NVIDIA GPUs (CUDA), and classic serial implementations. Specifically, we will implement the Sequential Thomas Algorithm, Paramveer Singh's MPI-based method (developed at LLNL), a differential equation-based method, the Parallel Thomas Algorithm (PTA) optimized with coalesced memory access, and optionally, the Parallel Cyclic Reduction (PCR) method. The goal is to compare the strengths, performance, and trade-offs of each method.
     </p>
@@ -95,7 +96,7 @@
       <a href="https://docs.google.com/document/d/1z2gazNAkkcUgguj6-UP3i-SGqsnLXVC9tsW3XqKVeaI/edit?usp=sharing" target="_blank">Project Milestone Report</a>.
     </p>
 
-    <!-- Schedule Section (TABLE FORMAT) -->
+    <!-- Schedule Section -->
     <div class="schedule-section">
       <h2>Project Schedule</h2>
       <table>
@@ -121,7 +122,9 @@
           <!-- Week 3 -->
           <tr>
             <td><strong>Week 3 (Apr 8–14)</strong></td>
-            <td>Complete MPI implementation; begin differential equation implementation; benchmark against sequential</td>
+            <td>
+              Complete MPI implementation; finish and complete parallel full-recursive-doubling factorization; begin differential equation implementation; benchmark against sequential
+            </td>
           </tr>
 
           <!-- Week 4 (Apr 15–18) -->
@@ -143,7 +146,7 @@
               <ul>
                 <li>Implement PTA forward substitution CUDA kernel (May &amp; Tanisha)</li>
                 <li>Implement PTA backward substitution CUDA kernel (May &amp; Tanisha)</li>
-                <li>Optimize kernels for coalesced memory access and shared memory usage (Tanisha)</li>
+                <li>Optimize both kernels for coalesced memory access and shared memory usage (Tanisha)</li>
                 <li>Benchmark kernel on increasing matrix sizes; verify correctness vs sequential (May)</li>
               </ul>
             </td>
@@ -154,10 +157,10 @@
             <td><strong>Week 5 (Apr 22–24)</strong></td>
             <td>
               <ul>
-                <li>Implement Cyclic Reduction (CR) forward reduction as CUDA kernel (May &amp; Tanisha)</li>
+                <li>If still ahead of schedule, implement Cyclic Reduction (CR) forward reduction step as CUDA kernel (May &amp; Tanisha)</li>
                 <li>Implement back-substitution step for CR (May &amp; Tanisha)</li>
-                <li>Implement Parallel Cyclic Reduction (PCR) with fully parallel reduction (May &amp; Tanisha)</li>
-                <li>Test correctness/performance of CR and PCR on power-of-2 and non-power-of-2 sizes (May &amp; Tanisha)</li>
+                <li>If still ahead of schedule, implement Parallel Cyclic Reduction (PCR) version with fully parallel reduction (May &amp; Tanisha)</li>
+                <li>Test correctness and performance of CR and PCR on power-of-2 and non-power-of-2 sized matrices (May &amp; Tanisha)</li>
               </ul>
             </td>
           </tr>
@@ -166,7 +169,7 @@
             <td><strong>Week 5 (Apr 25–28)</strong></td>
             <td>
               <ul>
-                <li>Collect benchmark results across sequential, MPI, PTA, CR, and PCR (May &amp; Tanisha)</li>
+                <li>Collect final benchmark results across sequential, MPI, PTA, CR, and PCR (May &amp; Tanisha)</li>
                 <li>Generate visualizations: timing plots, speedup graphs, memory usage comparisons (Tanisha)</li>
                 <li>Finalize technical report, poster content, and README for GitHub (May)</li>
                 <li>Submit final paper and upload all materials (May &amp; Tanisha)</li>
@@ -176,7 +179,21 @@
         </tbody>
       </table>
     </div>
-    <!-- End of Schedule Section -->
+    
+    <!-- Progress Summary Section -->
+    <h2>Progress Summary [Past 3 Weeks]</h2>
+    <p>
+      Over the past three weeks, we have made significant progress on our tridiagonal solver project. We finalized the overall project plan, set up our GitHub repository, and finished implementing the sequential Thomas algorithm. We also created a <code>testGenerator.py</code> script to generate several test cases and a <code>validation.py</code> script to ensure correctness against known solutions.
+    </p>
+    <p>
+      Building on that foundation, we began work on the MPI-based implementation inspired by the Burango factorization method, with a focus on correct message passing and distributed memory management. We completed the MPI implementation, ensuring that broadcast, gather, and scatter operations functioned correctly for arbitrary matrix sizes. Our results were verified against the sequential implementation, and we incorporated input parsing and runtime measurement using MPI and chrono.
+    </p>
+    <p>
+      Although the Burango factorization method demonstrated better speedup, it introduced a slight loss in accuracy—a tradeoff noted in the original paper. Because of this, we decided to implement an MPI-based parallel full recursive doubling factorization method as well. While this approach offers somewhat lower speedup due to communication overhead, it preserves 100% accuracy, making it the preferred choice for correctness-critical applications.
+    </p>
+    <p>
+      Additionally, we began implementing a differential equation solver by discretizing the problem into a tridiagonal system. Debugging is ongoing, particularly in areas related to multithreaded stability. We also conducted intermediate comparisons between the sequential and MPI implementations across varying thread counts to quantify speedup and guide further optimization.
+    </p>
   </div>
 </body>
 </html>
