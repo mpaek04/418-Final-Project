@@ -37,7 +37,7 @@
       color: #4b3621; /* cocoa brown */
       margin-top: 30px;
     }
-    p {
+    p, li {
       font-size: 15px;
       line-height: 1.7;
       color: #3b2f2f;
@@ -78,6 +78,10 @@
   <div class="container">
     <h1>Comparative Analysis and Implementation of Parallel Tridiagonal Solvers</h1>
     <p class="team"><strong>Team Members:</strong> Tanisha Mehta, May Paek</p>
+
+    <p style="text-align:center; font-size:14px; margin-bottom:20px;">
+      <a href="https://docs.google.com/document/d/1dGWPu-MaqyOvVfUXSLytA4b6r8WgdMyfdR4EOxA2PYQ/edit?usp=sharing" target="_blank">Final Project Report</a>
+    </p>
     <p style="text-align:center; font-size:14px; margin-bottom:20px;">
       <a href="https://github.com/tanim72/15418-final-project" target="_blank">Link to Github Repository</a>
     </p>
@@ -85,7 +89,7 @@
     <!-- Project Overview Summary -->
     <h2>Project Overview</h2>
     <p>
-      We are implementing and benchmarking multiple parallel algorithms for solving tridiagonal systems of equations across diverse computing architectures: multi-core CPUs (MPI), NVIDIA GPUs (CUDA), and classic serial implementations. Specifically, we will implement the Sequential Thomas Algorithm, Paramveer Singh's MPI-based method (developed at LLNL), a differential equation-based method, the Parallel Thomas Algorithm (PTA) optimized with coalesced memory access, and optionally, the Parallel Cyclic Reduction (PCR) method. The goal is to compare the strengths, performance, and trade-offs of each method.
+      We implemented and benchmarked multiple parallel algorithms for solving tridiagonal systems of equations, targeting both multi-core CPUs (MPI and OpenMP) and NVIDIA GPUs (CUDA). Our deliverables include an MPI-based Brugnano block-SPIKE solver, an MPI-based recursive doubling solver, and an MPI-based differential equation solver, as well as OpenMP versions of the Brugnano and recursive doubling algorithms. On the GPU side, we developed Cyclic Reduction (CR) and Parallel Cyclic Reduction (PCR) kernels, plus a hybrid PCR/CR solver using CUDA. We also implemented a sequential Thomas algorithm as a baseline for correctness and performance comparison. We present performance, scalability, and trade-off analyses between MPI, OpenMP, and CUDA implementations, highlighting communication versus computation balance. All implementations were tested on multi-core CPU machines and NVIDIA GPUs (RTX 3080 Ti), and we showcase our results and insights at the parallelism competition.
     </p>
 
     <h2>Detailed Proposal</h2>
@@ -109,24 +113,20 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Week 1 -->
           <tr>
             <td><strong>Week 1 (Mar 25–31)</strong></td>
             <td>Finalize project plan, set up GitHub, start sequential Thomas implementation</td>
           </tr>
-          <!-- Week 2 -->
           <tr>
             <td><strong>Week 2 (Apr 1–7)</strong></td>
             <td>Finish and test sequential solver; start Paramveer MPI implementation</td>
           </tr>
-          <!-- Week 3 -->
           <tr>
             <td><strong>Week 3 (Apr 8–14)</strong></td>
             <td>
-              Complete MPI implementation; finish and complete parallel full-recursive-doubling factorization; begin differential equation implementation; benchmark against sequential
+              Complete MPI implementation; finish parallel full-recursive-doubling factorization; begin differential equation implementation; benchmark against sequential
             </td>
           </tr>
-          <!-- Week 4 (Apr 15–18) -->
           <tr>
             <td><strong>Week 4 (Apr 15–18)</strong></td>
             <td>
@@ -138,7 +138,6 @@
               </ul>
             </td>
           </tr>
-          <!-- Week 4 (Apr 19–21) -->
           <tr>
             <td><strong>Week 4 (Apr 19–21)</strong></td>
             <td>
@@ -150,7 +149,6 @@
               </ul>
             </td>
           </tr>
-          <!-- Week 5 (Apr 22–24) -->
           <tr>
             <td><strong>Week 5 (Apr 22–24)</strong></td>
             <td>
@@ -162,7 +160,6 @@
               </ul>
             </td>
           </tr>
-          <!-- Week 5 (Apr 25–28) -->
           <tr>
             <td><strong>Week 5 (Apr 25–28)</strong></td>
             <td>
@@ -177,21 +174,6 @@
         </tbody>
       </table>
     </div>
-    
-    <!-- Progress Summary Section -->
-    <h2>Progress Summary [Past 3 Weeks]</h2>
-    <p>
-      Over the past three weeks, we have made significant progress on our tridiagonal solver project. We finalized the overall project plan, set up our GitHub repository, and finished implementing the sequential Thomas algorithm. We also created a <code>testGenerator.py</code> script to generate several test cases and a <code>validation.py</code> script to ensure correctness against known solutions.
-    </p>
-    <p>
-      Building on that foundation, we began work on the MPI-based implementation inspired by the Burango factorization method, with a focus on correct message passing and distributed memory management. We completed the MPI implementation, ensuring that broadcast, gather, and scatter operations functioned correctly for arbitrary matrix sizes. Our results were verified against the sequential implementation, and we incorporated input parsing and runtime measurement using MPI and chrono.
-    </p>
-    <p>
-      Although the Burango factorization method demonstrated better speedup, it introduced a slight loss in accuracy—a tradeoff noted in the original paper. Because of this, we decided to implement an MPI-based parallel full recursive doubling factorization method as well. While this approach offers somewhat lower speedup due to communication overhead, it preserves 100% accuracy, making it the preferred choice for correctness-critical applications.
-    </p>
-    <p>
-      Additionally, we began implementing a differential equation solver by discretizing the problem into a tridiagonal system. Debugging is ongoing, particularly in areas related to multithreaded stability. We also conducted intermediate comparisons between the sequential and MPI implementations across varying thread counts to quantify speedup and guide further optimization.
-    </p>
   </div>
 </body>
 </html>
